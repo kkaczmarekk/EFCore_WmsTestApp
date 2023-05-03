@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WmsApp.Domain.Com\WmsApp.Domain.Common.csproj" />
+    <ProjectReference Include="..\WmsApp.Domain.Common\WmsApp.Domain.Common.csproj" />
   </ItemGroup>
 
 </Project>

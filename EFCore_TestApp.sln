@@ -5,11 +5,11 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore_TestApp", "EFCore_TestApp\EFCore_TestApp.csproj", "{B91F6444-7F3F-4355-A0B9-0EC7A121E1A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Domain.Items", "WmsApp.Domain.Product\WmsApp.Domain.Items.csproj", "{F21F5DD9-78EC-4CBB-ADD0-09FAB56C74DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Domain.Items", "WmsApp.Domain.Items\WmsApp.Domain.Items.csproj", "{F21F5DD9-78EC-4CBB-ADD0-09FAB56C74DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Domain.Common", "WmsApp.Domain.Com\WmsApp.Domain.Common.csproj", "{8881C6A8-D5B2-4D0F-83ED-5208EB170088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Domain.Common", "WmsApp.Domain.Common\WmsApp.Domain.Common.csproj", "{8881C6A8-D5B2-4D0F-83ED-5208EB170088}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Persistence.Items", "WmsApp.Persistence.Product\WmsApp.Persistence.Items.csproj", "{5C0A2C11-F8F9-4578-B512-A2A8170EA3E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Persistence.Items", "WmsApp.Persistence.Items\WmsApp.Persistence.Items.csproj", "{5C0A2C11-F8F9-4578-B512-A2A8170EA3E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Persistence.Common", "WmsApp.Persistence.Common\WmsApp.Persistence.Common.csproj", "{9ECAA63E-8DCD-4BE8-8477-C901D664D4CC}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Tests.Common", "WmsA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Infrastructure.Items", "WmsApp.Infrastructure.Items\WmsApp.Infrastructure.Items.csproj", "{74938EC6-8B56-48ED-969F-4FEE3B165C50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Persistence.Items.Tests", "WmsApp.Persostence.Items.Tests\WmsApp.Persistence.Items.Tests.csproj", "{E6AA1D69-DD0B-4344-AE30-E91BA5CCA656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsApp.Persistence.Items.Tests", "WmsApp.Persistence.Items.Tests\WmsApp.Persistence.Items.Tests.csproj", "{E6AA1D69-DD0B-4344-AE30-E91BA5CCA656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

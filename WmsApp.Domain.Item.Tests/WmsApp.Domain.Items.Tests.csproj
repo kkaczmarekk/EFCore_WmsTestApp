@@ -19,7 +19,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <ProjectReference Include="..\WmsApp.Domain.Product\WmsApp.Domain.Items.csproj" />
+    <ProjectReference Include="..\WmsApp.Domain.Items\WmsApp.Domain.Items.csproj" />
     <ProjectReference Include="..\WmsApp.Infrastructure.Items\WmsApp.Infrastructure.Items.csproj" />
     <ProjectReference Include="..\WmsApp.Tests.Common\WmsApp.Tests.Common.csproj" />
   </ItemGroup>

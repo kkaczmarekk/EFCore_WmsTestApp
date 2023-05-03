@@ -13,6 +13,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\WmsApp.Domain.Product\WmsApp.Domain.Items.csproj" />
+	  <ProjectReference Include="..\WmsApp.Domain.Items\WmsApp.Domain.Items.csproj" />
 	</ItemGroup>
 </Project>
