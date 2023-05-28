@@ -148,11 +148,11 @@ namespace WmsApp.Domain.Items
 
             var status = ItemReview.CreateReview(voterName, voteStars, comment, timeGenerator.GetActualDateTime());
             status.CombineStatues(collectionStatus);
-
+            
             if (!status.IsValid) return collectionStatus;
 
             _reviews.Add(status.Result);
-            AddEvent(EventRunType.Before, new ItemReviewAddEvent(voteStars));
+            AddEvent(EventRunType.Before, EventRunScope.Transient, new ItemReviewAddEvent(voteStars));
 
             return collectionStatus;
         }
@@ -171,7 +171,7 @@ namespace WmsApp.Domain.Items
 
             var reviewToDel = searchQuery.FirstOrDefault();
 
-            AddEvent(EventRunType.Before, new ItemReviewRemoveEvent(reviewToDel.VoteStars));
+            AddEvent(EventRunType.Before, EventRunScope.Transient, new ItemReviewRemoveEvent(reviewToDel.VoteStars));
 
             _reviews.Remove(reviewToDel);
 

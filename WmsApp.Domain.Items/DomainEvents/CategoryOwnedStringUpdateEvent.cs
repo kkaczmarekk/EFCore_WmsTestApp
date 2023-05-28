@@ -7,13 +7,9 @@ using WmsApp.Domain.Common.Enities.Events;
 
 namespace WmsApp.Domain.Items.DomainEvents
 {
-    public class CategorySoftDeletedEvent : IEntityEvent
+    public class CategoryOwnedStringUpdateEvent : IEntityEvent
     {
-        Category? PrevParent;
-
-        public CategorySoftDeletedEvent(Category? prevParent)
-        {
-            PrevParent = prevParent;
-        }
+        private static Guid _eventGuid = Guid.NewGuid();
+        public Guid GetGuid() => _eventGuid;
     }
 }

@@ -1,4 +1,4 @@
-﻿CREATE OR ALTER FUNCTION dbo.udf_CategoriesOwnedString (
+﻿CREATE OR ALTER FUNCTION dbo.udf_Category_GetCategoriesOwnedString (
 	@CatId INT,
 	@Separator nvarchar(5))
 RETURNS NVARCHAR(4000)

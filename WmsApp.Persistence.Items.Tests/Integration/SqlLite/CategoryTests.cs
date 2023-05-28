@@ -11,6 +11,7 @@ using WmsApp.Domain.Items;
 using WmsApp.Domain.Items.Tests.Unit;
 using WmsApp.Infrastructure.Items.EventHandlers;
 using WmsApp.Persistence.Common.Db;
+using WmsApp.Persistence.Common.Db.EventRunner;
 using WmsApp.Persistence.Items.Tests.Fake;
 using WmsApp.Tests.Common.Factories.Items;
 
@@ -22,7 +23,7 @@ namespace WmsApp.Persistence.Items.Tests.Integration.SqlLite
         public void CreateCategory_ParentOwnedCategoiesNotLoaded()
         {
             //SETUP
-            EventsDbContext<ItemDbContext>.SetEntityHandlersFromAssembly(Assembly.GetAssembly(typeof(CategoryAddedHandler)));
+            EventRunnerConfig.SetEntityHandlersFromAssembly(Assembly.GetAssembly(typeof(CategoryBranchStringUpdateEventHandler)));
             using var con = new SqliteInMemory<ItemDbContextSqliteFake, ItemDbContext>();
 
             var complexCategory = new CategoryFactory.FashionCompexCategory();

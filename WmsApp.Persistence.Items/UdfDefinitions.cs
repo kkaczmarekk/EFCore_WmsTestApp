@@ -11,18 +11,18 @@ namespace WmsApp.Persistence.Items
         public static void RegisterUdfDefinitions(this ModelBuilder modelBuilder)
         {
             modelBuilder.HasDbFunction(
-                () => Udf_CategoriesBranchString(default(int), string.Empty));
+                () => udf_Category_GetCategoriesOwnedString(default(int), string.Empty));
 
             modelBuilder.HasDbFunction(
-                () => Udf_CategoriesOwnedString(default(int), string.Empty));
+                () => udf_Category_GetCategoryBranchString(default(int), string.Empty));
         }
 
-        public static string Udf_CategoriesBranchString(int catId, string separator)
+        public static string udf_Category_GetCategoriesOwnedString(int catId, string separator)
         {
             return null;
         }
 
-        public static string Udf_CategoriesOwnedString(int catId, string separator)
+        public static string udf_Category_GetCategoryBranchString(int catId, string separator)
         {
             return null;
         }

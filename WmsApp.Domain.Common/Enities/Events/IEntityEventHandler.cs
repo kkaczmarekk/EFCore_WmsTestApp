@@ -9,6 +9,6 @@ namespace WmsApp.Domain.Common.Enities.Events
 {
     public interface IEntityEventHandler<T> where T : IEntityEvent
     {
-        IStatusValidator Handle(object callingEntity, T entityEvent);
+        IStatusValidator Handle (object callingEntity, T entityEvent);
     }
 }

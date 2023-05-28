@@ -9,6 +9,9 @@ namespace WmsApp.Domain.Items.DomainEvents
 {
     public class ItemReviewRemoveEvent : IEntityEvent
     {
+        private static Guid _eventGuid = Guid.NewGuid();
+        public Guid GetGuid() => _eventGuid;
+
         public ItemReviewRemoveEvent(int votedStars)
         {
             VotedStars = votedStars;

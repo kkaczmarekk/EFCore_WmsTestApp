@@ -12,8 +12,8 @@ using WmsApp.Persistence.Items;
 namespace WmsApp.Persistence.Items.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230503194220_addInitialScriptsForCategoriesCashed")]
-    partial class addInitialScriptsForCategoriesCashed
+    [Migration("20230528091736_add_CategoryUdfAndSpForCashedValues")]
+    partial class add_CategoryUdfAndSpForCashedValues
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

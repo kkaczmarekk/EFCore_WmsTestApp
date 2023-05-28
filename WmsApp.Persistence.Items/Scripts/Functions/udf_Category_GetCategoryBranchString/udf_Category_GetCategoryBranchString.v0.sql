@@ -1,4 +1,4 @@
-﻿CREATE OR ALTER FUNCTION dbo.udf_CategoryBranchString (
+﻿CREATE OR ALTER FUNCTION dbo.udf_Category_GetCategoryBranchString (
 	@CatId INT,
 	@Separator nvarchar(5))
 RETURNS NVARCHAR(4000)

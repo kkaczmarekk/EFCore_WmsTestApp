@@ -14,6 +14,7 @@ using WmsApp.Persistence.Common.Extensions;
 using WmsApp.Persistence.Common.Migrations;
 using System.Linq.Expressions;
 using System.Xml;
+using WmsApp.Persistence.Common.Db.EventRunner;
 
 namespace EFCore_TestApp
 {
@@ -22,29 +23,7 @@ namespace EFCore_TestApp
         static void Main(string[] args)
         {
 
-            //var stb = new ScriptsSqlBuilder(Assembly.GetAssembly(typeof(ItemDbContext)), queryFilter);
-
-
-            //var stream = Assembly.GetAssembly(typeof(ItemDbContext)).GetManifestResourceStream("WmsApp.Persistence.Items.Scripts.Functions.udf_CategoryBranchString.udf_CategoryBranchString.v0.sql");
-
-            //var av = Assembly.GetAssembly(typeof(ItemDbContext)).GetManifestResourceNames();
-
-
-            //using (var ms = new MemoryStream())
-            //{
-
-            //    stream.CopyTo(ms);
-            //    var data = ms.ToArray();
-            //    var header = MigrationExtensions.TestStringext2();
-
-            //    var text = Encoding.UTF8.GetString(data, 3, data.Length - 3);
-            //    //var text = Encoding.UTF8.GetString(data, 3, data.Length - 3);
-            //    //return mb.Sql(text);
-            //}
-
-            EventsDbContext<ItemDbContext>.SetEntityHandlersFromAssembly(Assembly.GetAssembly(typeof(CategoryAddedHandler)));
-            //return;
-
+            EventRunnerConfig.SetEntityHandlersFromAssembly(Assembly.GetAssembly(typeof(CategoryBranchStringUpdateEventHandler)));
             using (var db = new DesignTimeContextFactory().CreateDbContext(null))
             {
                 var cat = Category.CreateCategory("Fashion", null, null, new ActualDateTimeGenerator(), "TEST",

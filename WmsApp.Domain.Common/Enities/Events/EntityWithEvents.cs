@@ -7,40 +7,110 @@ using System.Threading.Tasks;
 
 namespace WmsApp.Domain.Common.Enities.Events
 {
-    public enum EventRunType { Before,  After, AfterTrans }
+    public enum EventRunType { Before,  After }
+    public enum EventRunScope { Transient, Entity, Context }
+
+    public struct EntityEventId
+    {
+        public EntityEventId(Guid entityGuid, Guid methodGuid)
+        {
+            EntityGuid = entityGuid;
+            MethodGuid = methodGuid;
+        }
+
+        public Guid EntityGuid { get; }
+        public Guid MethodGuid { get; }
+    }
+
+    public struct EntityEventValue
+    {
+        public EntityEventValue(EntityWithEvents entity, IEntityEvent entityEvent)
+        {
+            Entity = entity;
+            Event = entityEvent;
+        }
+        public EntityWithEvents Entity { get; }
+        public IEntityEvent Event { get;  }
+    }
 
     public abstract class EntityWithEvents
     {
-        private readonly List<IEntityEvent> _eventsBeforeSave = new List<IEntityEvent>();
-        private readonly List<IEntityEvent> _eventsAfterSafe = new List<IEntityEvent>();
+        private Guid _entityScopeGuid = Guid.NewGuid();
+        private static Guid _contextScopeGuid = Guid.NewGuid();
 
-        public void AddEvent(EventRunType runType, IEntityEvent entityEvent)
+        private readonly Dictionary<EntityEventId, EntityEventValue> _eventsBeforeSave = new Dictionary<EntityEventId, EntityEventValue>();
+        private readonly Dictionary<EntityEventId, EntityEventValue> _eventsAfterSave = new Dictionary<EntityEventId, EntityEventValue>();
+
+        public void AddEvent(EventRunType runType, EventRunScope scopeType, IEntityEvent entityEvent)
         {
-            switch(runType)
+            var eventGuid = GetGuidFromScope(scopeType, _entityScopeGuid, entityEvent);
+
+            if(_eventsBeforeSave.ContainsKey(eventGuid) 
+                || _eventsAfterSave.ContainsKey(eventGuid))
+            {
+                return;
+            }
+
+            switch (runType)
             {
                 case EventRunType.Before:
-                    _eventsBeforeSave.Add(entityEvent);
+                    _eventsBeforeSave.Add(eventGuid, new EntityEventValue(this, entityEvent));
                     break;
                 case EventRunType.After:
-                    _eventsAfterSafe.Add(entityEvent);
+                    _eventsAfterSave.Add(eventGuid, new EntityEventValue(this, entityEvent));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(runType.ToString());
             }
         }
 
-        public ICollection<IEntityEvent> GetBeforeEventsAndClear()
+
+        private static EntityEventId GetGuidFromScope(EventRunScope scopedType
+            , Guid entityGuid
+            , IEntityEvent entityEvent) => scopedType switch
         {
-            var result = _eventsBeforeSave.ToList();
+            EventRunScope.Transient => new EntityEventId (Guid.NewGuid(), entityEvent.GetGuid()),
+            EventRunScope.Entity => new EntityEventId(entityGuid, entityEvent.GetGuid()),
+            EventRunScope.Context => new EntityEventId(_contextScopeGuid, entityEvent.GetGuid()),
+            _ => throw new ArgumentOutOfRangeException(scopedType.ToString())
+        };
+
+        public IDictionary<EntityEventId, EntityEventValue> GetBeforeEventsAndClear(IDictionary<EntityEventId, EntityEventValue> eventsToHandle = null)
+        {
+            if (eventsToHandle is null)
+            {
+                var newEventsTohandle = _eventsBeforeSave.ToDictionary(events => events.Key,
+                    events => events.Value);
+
+                _eventsBeforeSave.Clear();
+                return newEventsTohandle;
+            }  
+
+            foreach (var entityEvent in _eventsBeforeSave)
+                if (!eventsToHandle.ContainsKey(entityEvent.Key))
+                    eventsToHandle.Add(entityEvent.Key, entityEvent.Value);
+
             _eventsBeforeSave.Clear();
-            return result;
+            return eventsToHandle;
         }
 
-        public ICollection<IEntityEvent> GetAfterEventsAndClear()
+        public IDictionary<EntityEventId, EntityEventValue> GetAfterEventsAndClear(IDictionary<EntityEventId, EntityEventValue> eventsToHandle = null)
         {
-            var result = _eventsAfterSafe.ToList();
-            _eventsAfterSafe.Clear();
-            return result;
+            if (eventsToHandle is null)
+            {
+                var newEventsTohandle = _eventsAfterSave.ToDictionary(events => events.Key,
+                    events => events.Value);
+
+                _eventsAfterSave.Clear();
+                return newEventsTohandle;
+            }
+
+            foreach (var entityEvent in _eventsAfterSave)
+                if (!eventsToHandle.ContainsKey(entityEvent.Key))
+                    eventsToHandle.Add(entityEvent.Key, entityEvent.Value);
+
+            _eventsAfterSave.Clear();
+            return eventsToHandle;
         }
     }
 }

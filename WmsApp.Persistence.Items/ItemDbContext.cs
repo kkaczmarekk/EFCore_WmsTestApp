@@ -7,6 +7,7 @@ using WmsApp.Persistence.Items.Configurations;
 using Microsoft.Data.SqlClient;
 using WmsApp.Persistence.Common.Extensions;
 using WmsApp.Persistence.Common.Db;
+using WmsApp.Persistence.Common.Db.EventRunner;
 
 namespace WmsApp.Persistence.Items
 {
@@ -19,7 +20,9 @@ namespace WmsApp.Persistence.Items
 
         public ItemDbContext() { }
         
-        public ItemDbContext(DbContextOptions<ItemDbContext> options) : base(options)
+        public ItemDbContext(DbContextOptions<ItemDbContext> options
+            , IEventRunner eventRunner) 
+        : base(options, eventRunner)
         {
 
         }
@@ -37,17 +40,15 @@ namespace WmsApp.Persistence.Items
             modelBuilder.ApplyConfiguration<CategoryOwner>(new CategoryOwnerConfig());
         }
 
-        public virtual int sp_UpdateCategoriesOwnedStringWithParents(int id)
+        public virtual int sp_Category_UpdateAllCategoriesOwnedStrings()
         {
-            return Database.ExecuteSqlRaw("EXECUTE [dbo].[sp_UpdateCategoriesOwnedStringWithParents] @CatId, @Separator"
-                , new SqlParameter("@CatId", id)
+            return Database.ExecuteSqlRaw("EXECUTE [dbo].[sp_Category_UpdateAllCategoriesOwnedStrings] @Separator"
                 , new SqlParameter("@Separator", Category.CONST.OWNED_SEPARATOR));
         }
 
-        public virtual int sp_UpdateCategoryBranchStringWithChilds(int id)
+        public virtual int sp_Category_UpdateAllCategoryBranchStrings()
         {
-            return Database.ExecuteSqlRaw("EXECUTE [dbo].[sp_UpdateCategoryBranchStringWithChilds] @CatId, @Separator"
-                , new SqlParameter("@CatId", id)
+            return Database.ExecuteSqlRaw("EXECUTE [dbo].[sp_Category_UpdateAllCategoryBranchStrings] @Separator"
                 , new SqlParameter("@Separator", Category.CONST.BRANCH_SEPARATOR));
         }
     }

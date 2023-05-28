@@ -14,5 +14,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\WmsApp.Domain.Items\WmsApp.Domain.Items.csproj" />
+	  <ProjectReference Include="..\WmsApp.Persistence.Common\WmsApp.Persistence.Common.csproj" />
 	</ItemGroup>
 </Project>

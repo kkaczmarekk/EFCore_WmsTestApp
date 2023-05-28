@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WmsApp.Persistence.Common.Db.EventRunner;
 
 namespace WmsApp.Persistence.Items
 {
@@ -19,7 +20,7 @@ namespace WmsApp.Persistence.Items
             optionBuilder.UseSqlServer(_connectionString, dbOptions =>
                 dbOptions.MigrationsHistoryTable("_ItemMigrationHistoryTable"));
 
-            return new ItemDbContext(optionBuilder.Options);
+            return new ItemDbContext(optionBuilder.Options, new EventRunner());
         }
     }
 }

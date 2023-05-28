@@ -57,7 +57,9 @@ namespace WmsApp.Domain.Items
 
             parentCategory?._categoriesOwned.Add(category);
 
-            category.AddEvent(EventRunType.After, new CategoryAddedEvent());
+            category.AddEvent(EventRunType.After, EventRunScope.Context, new CategoryBranchStringUpdateEvent());
+            category.AddEvent(EventRunType.After, EventRunScope.Context, new CategoryOwnedStringUpdateEvent());
+
 
             return status.SetResult(category);
         }
@@ -93,12 +95,9 @@ namespace WmsApp.Domain.Items
             }
 
             if(IsDeleted != softDeleted)
-                AddEvent(EventRunType.Before, new CategorySoftDeletedEvent(ParentCategory));
+                AddEvent(EventRunType.Before, EventRunScope.Context, new CategoryOwnedStringUpdateEvent());
 
             IsDeleted = softDeleted;
-
-
-
 
             return status;
         }
@@ -118,7 +117,7 @@ namespace WmsApp.Domain.Items
 
             if (!status.IsValid) return status;
 
-            AddEvent(EventRunType.Before, new CategoryNameUpdateEvent(Name));
+            AddEvent(EventRunType.Before, EventRunScope.Context, new CategoryBranchStringUpdateEvent());
             Name = newName;
             SetUpdateValues(userName, timeGenerator);
 
@@ -137,7 +136,9 @@ namespace WmsApp.Domain.Items
 
             if (!status.IsValid) return status;
 
-            AddEvent(EventRunType.Before, new CategoryParentChangedEvent(ParentCategory));
+            AddEvent(EventRunType.After, EventRunScope.Context, new CategoryBranchStringUpdateEvent());
+            AddEvent(EventRunType.After, EventRunScope.Context, new CategoryOwnedStringUpdateEvent());
+
             ParentCategory = newParentCategory;
             SetUpdateValues(userName, timeGenerator);
 

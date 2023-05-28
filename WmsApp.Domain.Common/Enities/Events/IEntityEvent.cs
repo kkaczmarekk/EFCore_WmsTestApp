@@ -8,5 +8,6 @@ namespace WmsApp.Domain.Common.Enities.Events
 {
     public interface IEntityEvent
     {
+        public Guid GetGuid();
     }
 }

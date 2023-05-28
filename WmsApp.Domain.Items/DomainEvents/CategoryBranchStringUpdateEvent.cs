@@ -7,13 +7,9 @@ using WmsApp.Domain.Common.Enities.Events;
 
 namespace WmsApp.Domain.Items.DomainEvents
 {
-    public class CategoryNameUpdateEvent : IEntityEvent
+    public class CategoryBranchStringUpdateEvent : IEntityEvent
     {
-        public CategoryNameUpdateEvent(string prevName)
-        {
-            PrevName = prevName;
-        }
-
-        public string PrevName { get; }
+        private static Guid _eventGuid = Guid.NewGuid();
+        public Guid GetGuid() => _eventGuid;
     }
 }

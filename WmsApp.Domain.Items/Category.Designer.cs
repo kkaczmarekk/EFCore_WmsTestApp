@@ -7,7 +7,7 @@ namespace WmsApp.Domain.Items
         {
             public const int NAME_LEN = 50;
             public const string BRANCH_SEPARATOR = " | ";
-            public const string OWNED_SEPARATOR = " , ";
+            public const string OWNED_SEPARATOR = ", ";
         }
 
         public int Id { get; private set; }

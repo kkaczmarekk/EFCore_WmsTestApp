@@ -47,7 +47,7 @@ namespace WmsApp.Domain.Items.Tests.Unit
             Assert.Equal(name, catTestResult.Result.Name);
             Assert.Equal(CreateStub.ActualDateTimeStub.GetActualDateTime(), catTestResult.Result.CreatedDateUtc);
             Assert.Equal(CreateStub.UserNameStub, catTestResult.Result.CreatedByUserName);
-            AssertExt.EntityEvents_Check(catTestResult.Result, afterCount: 1);
+            AssertExt.EntityEvents_Check(catTestResult.Result, afterCount: 2);
         }
 
         [Fact]
@@ -187,7 +187,7 @@ namespace WmsApp.Domain.Items.Tests.Unit
             Assert.Equal((alterCount & 1) == 1, !catTest.IsDeleted);
             Assert.Equal(DeleteStub.UserNameStub, catTest.DeletedByUserName);
             Assert.Equal(DeleteStub.ActualDateTimeStub.GetActualDateTime(), catTest.DeletedDateUtc);
-            AssertExt.EntityEvents_Check(catTest, beforeCount: alterCount + 1);
+            AssertExt.EntityEvents_Check(catTest, beforeCount: 1);
         }
 
         [Theory]
@@ -382,7 +382,7 @@ namespace WmsApp.Domain.Items.Tests.Unit
             Assert.Equal(new_parentCatTest, catTestInit.Cat.ParentCategory);
             Assert.Equal(UpdateStub.UserNameStub, catTestInit.Cat.UpdatedByUserName);
             Assert.Equal(UpdateStub.ActualDateTimeStub.GetActualDateTime(), catTestInit.Cat.UpdatedDateUtc);
-            AssertExt.EntityEvents_Check(catTestInit.Cat, beforeCount: 1);
+            AssertExt.EntityEvents_Check(catTestInit.Cat, afterCount: 2);
         }
 
         [Fact]

@@ -7,17 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\Functions\udf_CategoriesOwnedString\udf_CategoriesOwnedString.v0.sql" />
-    <None Remove="Scripts\Functions\udf_CategoryBranchString\udf_CategoryBranchString.v0.sql" />
-    <None Remove="Scripts\StoredProcedures\sp_UpdateCategoriesOwnedStringWithParents\sp_UpdateCategoriesOwnedStringWithParents.v0.sql" />
-    <None Remove="Scripts\StoredProcedures\sp_UpdateCategoryBranchStringWithChilds\sp_UpdateCategoryBranchStringWithChilds.v0.sql" />
+    <None Remove="Scripts\Functions\udf_Category_GetCategoriesOwnedString\udf_Category_GetCategoriesOwnedString.v0.sql" />
+    <None Remove="Scripts\Functions\udf_Category_GetCategoryBranchString\udf_Category_GetCategoryBranchString.v0.sql" />
+    <None Remove="Scripts\StoredProcedures\sp_Category_UpdateAllCategoriesOwnedStrings\sp_Category_UpdateAllCategoriesOwnedStrings.v0.sql" />
+    <None Remove="Scripts\StoredProcedures\sp_Category_UpdateAllCategoryBranchStrings\sp_Category_UpdateAllCategoryBranchStrings.v0.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Functions\udf_CategoryBranchString\udf_CategoryBranchString.v0.sql" />
-    <EmbeddedResource Include="Scripts\Functions\udf_CategoriesOwnedString\udf_CategoriesOwnedString.v0.sql" />
-    <EmbeddedResource Include="Scripts\StoredProcedures\sp_UpdateCategoriesOwnedStringWithParents\sp_UpdateCategoriesOwnedStringWithParents.v0.sql" />
-    <EmbeddedResource Include="Scripts\StoredProcedures\sp_UpdateCategoryBranchStringWithChilds\sp_UpdateCategoryBranchStringWithChilds.v0.sql" />
+    <EmbeddedResource Include="Scripts\Functions\udf_Category_GetCategoryBranchString\udf_Category_GetCategoryBranchString.v0.sql" />
+    <EmbeddedResource Include="Scripts\Functions\udf_Category_GetCategoriesOwnedString\udf_Category_GetCategoriesOwnedString.v0.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\sp_Category_UpdateAllCategoryBranchStrings\sp_Category_UpdateAllCategoryBranchStrings.v0.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\sp_Category_UpdateAllCategoriesOwnedStrings\sp_Category_UpdateAllCategoriesOwnedStrings.v0.sql" />
   </ItemGroup>
 
   <ItemGroup>

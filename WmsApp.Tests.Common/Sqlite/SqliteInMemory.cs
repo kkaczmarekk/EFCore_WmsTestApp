@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WmsApp.Persistence.Common.Db.EventRunner;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WmsApp.Persistence.Items.Tests.Integration.SqlLite
@@ -25,10 +26,10 @@ namespace WmsApp.Persistence.Items.Tests.Integration.SqlLite
                 .UseSqlite(_connection)
                 .Options;
         }
-
+        
         public TContext GetContext()
         {
-            return (TContext)Activator.CreateInstance(typeof(TContext), new object[] { _options });
+            return (TContext)Activator.CreateInstance(typeof(TContext), new object[] { _options, new EventRunner() });
         }
 
         public void Dispose()
